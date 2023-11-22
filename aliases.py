@@ -14,13 +14,17 @@ eleWP = 'mvaFall17V2Iso_WP90_SS_tthmva_70'
 muWP  = 'cut_Tight_HWWW_tthmva_80'
 
 mc = [skey for skey in samples if skey not in ('DATA', 'Fake_lep')]
-SSsamples = [skey for skey in mc if skey not in ('WW','DY','Higgs')] # 'Top' shoud be here
+SSsamples = [skey for skey in samples if skey not in ('WW','DY','Higgs')] # 'Top' shoud be here
 OSsamples = [skey for skey in mc if skey in ('WW','DY','Higgs')]
 
 
 # -------- tau veto
 aliases['tauVeto_ww'] = {
     'expr': '(Sum(Tau_pt > 18 && abs(Tau_eta)<2.3 && Tau_decayMode &&sqrt( pow(Tau_eta - Lepton_eta[0], 2) + pow(abs(abs(Tau_phi - Lepton_phi[0])-3.1415)-3.1415, 2) ) >= 0.4 && sqrt( pow(Tau_eta - Lepton_eta[1], 2) + pow(abs(abs(Tau_phi - Lepton_phi[1])-3.1415)-3.1415, 2) ) >= 0.4) == 0)'
+}
+
+aliases['tauVeto_wz'] = {
+    'expr': '(Sum(Alt(Lepton_pt,0,0.)>25 && Alt(Lepton_pt,1,0.)>20 && Alt(Lepton_pt,2,0.)>20 && Alt(Lepton_pt,3,0.)<10 && sqrt( pow(Tau_eta - Alt(Lepton_eta,0,-9999.), 2) + pow(abs(abs(Tau_phi - Alt(Lepton_phi,0,-9999.))-M_PI)-M_PI, 2) ) > 0.4 && sqrt( pow(Tau_eta - Alt(Lepton_eta,1,-9999.), 2) + pow(abs(abs(Tau_phi - Alt(Lepton_phi,1,-9999.))-M_PI)-M_PI, 2) ) > 0.4 && sqrt( pow(Tau_eta - Alt(Lepton_eta,2,-9999.), 2) + pow(abs(abs(Tau_phi - Alt(Lepton_phi,2,-9999.))-M_PI)-M_PI, 2) ) > 0.4) == 0)'
 }
 
 # -------- lepton misidentification SF

@@ -147,7 +147,7 @@ samples['ZZ'] = {  'name'  :   nanoGetSampleFiles(mcDirectory,'ZZTo2L2Nu')
                             # + nanoGetSampleFiles(directory,'ZZTo2L2Nu_ext2')
                              + nanoGetSampleFiles(mcDirectory,'ZZTo2Q2L_mllmin4p0')
                              + nanoGetSampleFiles(mcDirectory,'ZZTo4L'),
-                    'weight' :  XSWeight+'*'+SFweight+'*((nLepton==2)*PromptGenLepMatch2l + (nLepton==3)*PromptGenLepMatch3l + (nLepton>3)*PromptGenLepMatch4l)*'+METFilter_MC,
+                    'weight' :  XSWeight+'*'+SFweight+'*samesign_requirement*((nLepton==2)*PromptGenLepMatch2l + (nLepton==3)*PromptGenLepMatch3l + (nLepton>3)*PromptGenLepMatch4l)*'+METFilter_MC,
                     'FilesPerJob' : 3,
                  }
 
@@ -256,7 +256,7 @@ samples['VVV'] = {
 
 samples['Fake_lep'] = {
   'name': [],
-  'weight': 'METFilter_DATA*fakeW',
+  'weight': 'METFilter_DATA*fakeW*samesign_requirement',
   'weights': [],
   'isData': ['all'],
   'FilesPerJob': 20
@@ -287,7 +287,7 @@ for _, sd in DataRun:
 
 samples['DATA'] = {
   'name': [],
-  'weight': 'LepWPCut*METFilter_DATA',
+  'weight': 'LepWPCut*METFilter_DATA*samesign_requirement',
   'weights': [],
   'isData': ['all'],
   'FilesPerJob': 50
@@ -314,4 +314,4 @@ for _, sd in DataRun:
     addSampleWeight(samples, 'DATA', datatag, DataTrig[pd])
 
 
-# samples = {k:v for k,v in samples.items() if k in ['Fake_lep']}
+#samples = {k:v for k,v in samples.items() if k in ['ZZ']}
