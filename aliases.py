@@ -117,7 +117,24 @@ aliases['oppositesign_requirement'] = {
     'samples':OSsamples
 }
 
-# ----------------------------
+# --------------------------- ele/mu SF weights
+
+aliases['SFweightEleUp'] = {
+    'expr': 'LepSF2l__ele_'+eleWP+'__Up',
+    'samples': mc
+}
+aliases['SFweightEleDown'] = {
+    'expr': 'LepSF2l__ele_'+eleWP+'__Do',
+    'samples': mc
+}
+aliases['SFweightMuUp'] = {
+    'expr': 'LepSF2l__mu_'+muWP+'__Up',
+    'samples': mc
+}
+aliases['SFweightMuDown'] = {
+    'expr': 'LepSF2l__mu_'+muWP+'__Do',
+    'samples': mc
+}
 
 
 

@@ -41,5 +41,5 @@ ztag ='WH3l_mlll > 100 \
 # ----------------------------------
 cuts['ssww']=ww+'&& bVeto &&'+zlep+'&&'+zveto+'&&'+triple_charge+'&& tauVeto_ww'
 cuts['btagCR']=ww+'&& bReq &&'+zlep+'&&'+zveto+'&&'+triple_charge+'&& tauVeto_ww'
-cuts['WZ']= wz +' && ' + wz_zmass + ' && bVeto &&'+zlep_wz+'&&'+ztag+'&&'+triple_charge_wz+'&& tauVeto_wz'
-cuts['WZb']= wz + ' && ' + wz_zmass + ' && bReq &&'+zlep_wz+'&&'+ztag+'&&'+triple_charge_wz+'&& tauVeto_wz'
+#cuts['WZ']= wz +' && ' + wz_zmass + ' && bVeto &&'+zlep_wz+'&&'+ztag+'&&'+triple_charge_wz+'&& tauVeto_wz'
+#cuts['WZb']= wz + ' && ' + wz_zmass + ' && bReq &&'+zlep_wz+'&&'+ztag+'&&'+triple_charge_wz+'&& tauVeto_wz'

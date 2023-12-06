@@ -12,8 +12,12 @@ treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 limitFiles = -1
 
 
-def makeMCDirectory(var=''):
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+def makeMCDirectory(var=""):
+    _treeBaseDir = treeBaseDir + ""
+    if var == "":
+        return "/".join([_treeBaseDir, mcProduction, mcSteps])
+    else:
+        return "/".join([_treeBaseDir, mcProduction, mcSteps + "__" + var])
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
