@@ -102,15 +102,103 @@ nuisances['muonpt'] = {
 #}
 
 # ------------------- JES
+# ----- new way to deal with JES, is it correct?
+#nuisances['JES'] = {
+#                'name': 'CMS_jes_RDF_2018',
+#                'kind': 'suffix',
+#                'type': 'shape',
+#                'mapUp': 'JESup',
+#                'mapDown': 'JESdo',
+#                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['SSWW','WpWp_QCD','WZ_EWK']), # did not process the up/do variations
+#                'folderUp' : makeMCDirectory('RDF__JESup_suffix'),
+#                'folderDown' : makeMCDirectory('RDF__JESdo_suffix'),
+#                'AsLnN'      : '1',
+#}
+
+# ----- old way to deal with JES, no longer working (no folders)
+#jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
+#folderup = ""
+#folderdo = ""
+#
+#for js in jes_systs:
+#  if 'Absolute' in js:
+#    folderup = makeMCDirectory('JESAbsoluteup_suffix')
+#    folderdo = makeMCDirectory('JESAbsolutedo_suffix')
+#  elif 'BBEC1' in js:
+#    folderup = makeMCDirectory('JESBBEC1up_suffix')
+#    folderdo = makeMCDirectory('JESBBEC1do_suffix')
+#  elif 'EC2' in js:
+#    folderup = makeMCDirectory('JESEC2up_suffix')
+#    folderdo = makeMCDirectory('JESEC2do_suffix')
+#  elif 'HF' in js:
+#    folderup = makeMCDirectory('JESHFup_suffix')
+#    folderdo = makeMCDirectory('JESHFdo_suffix')
+#  elif 'Relative' in js:
+##    folderup = makeMCDirectory('JESRelativeup_suffix')
+##    folderdo = makeMCDirectory('JESRelativedo_suffix')
+##  elif 'FlavorQCD' in js:
+##    folderup = makeMCDirectory('JESFlavorQCDup_suffix')
+##    folderdo = makeMCDirectory('JESFlavorQCDdo_suffix')
+##
+##  nuisances[js] = {
+##      'name': 'CMS_scale_'+js,
+##      'kind': 'suffix',
+##      'type': 'shape',
+##      'mapUp': js+'up',
+##      'mapDown': js+'do',
+##      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['SSWW','WpWp_QCD','WZ_EWK']),
+##      'folderUp': folderup,
+##      'folderDown': folderdo,
+##      'AsLnN': '1'
+##  }
+#
 # ------------------- btagging
-# ------------------- pile up
-# ------------------- pileup sf
-# ------------------- parton shower (ISR,FSR)
-# ------------------- SSWW pert ord
-# ------------------- pdf weight
-# ------------------- QCD scale
+for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+    btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
+
+    name = 'CMS_btag_%s' % shift
+    if 'stats' in shift:
+        name += '_2018'
+
+    nuisances['btag_shape_%s' % shift] = {
+        'name': name,
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': dict((skey, btag_syst) for skey in mc),
+    }
+
+## ------------------- pile up
+## ------------------- pileup sf
+## ------------------- parton shower (ISR,FSR)
+## ------------------- SSWW pert ord
+## ------------------- pdf weight
+## ------------------- QCD scale
+## ------------------- MET (new, I completely did not have it before)
+nuisances['met'] = {
+    'name': 'CMS_scale_met_2018',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'METup',
+    'mapDown': 'METdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['SSWW','WpWp_QCD','WZ_EWK']),
+    'folderUp': makeMCDirectory('METup_suffix'),
+    'folderDown': makeMCDirectory('METdo_suffix'),
+    'AsLnN': '1'
+}
+
 # ------------------- rateparams
+#
 # ------------------- stats
+autoStats = True
+if autoStats:
+    nuisances['stat'] = {
+        'type': 'auto',
+        'maxPoiss': '10',
+        'includeSignal': '1',
+        'samples': {}
+}
+# 'maxPoiss' =  Number of threshold events for Poisson modelling
+# 'includeSignal' =  Include MC stat nuisances on signal processes (1=True, 0=False)
 
 # -------------------------------
 
