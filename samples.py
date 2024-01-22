@@ -318,4 +318,76 @@ for _, sd in DataRun:
     addSampleWeight(samples, 'DATA', datatag, DataTrig[pd])
 
 
-#samples = {k:v for k,v in samples.items() if k in ['ZZ']}
+#####################################################
+######################################### EFT samples
+#redirector = 'root://eoshome-g.cern.ch/'
+#def nanoGetSampleFiles(path, name):
+#    _files = searchFiles.searchFiles(path, name, redirector=redirector)
+#    #_files = glob.glob(path + f"/nanoLatino_{name}__part*.root")
+#    if limitFiles != -1 and len(_files) > limitFiles:
+#        return [(name, _files[:limitFiles])]
+#    else:
+#        return  [(name, _files)]
+#MCDirEFT = "/eos/user/g/glavizza/nanoAOD/UltraLegacy_EFT/Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9"
+#files =  nanoGetSampleFiles(MCDirEFT, 'SSWW_EFTdim6_UL')
+
+files =  nanoGetSampleFiles(mcDirectory, 'SSWW_EFTdim6_UL')
+op = ["cW", "cHDD", "cHW", "cHWB", "cHbox", "cHj1", "cHj3", "cHl1", "cHl3", "cll1", "cjj11", "cjj31", "cjj18", "cjj38"]
+#op = ["cW", "cHbox"]
+# the following (ls) contains the operators in the same order as in the LHEReweightingWeight vector
+ls = ['SM', 'cW_m1', 'cW', 'cHDD_m1', 'cHDD', 'cHW_m1', 'cHW', 'cHWB_m1', 'cHWB', 'cHbox_m1', 'cHbox', 'cHj1_m1', 'cHj1', 'cHj3_m1', 'cHj3', 'cHl1_m1', 'cHl1', 'cHl3_m1', 'cHl3', 'cll1_m1', 'cll1', 'cjj11_m1', 'cjj11', 'cjj31_m1', 'cjj31', 'cjj18_m1', 'cjj18', 'cjj38_m1', 'cjj38']
+# the following (mix) contains all the operators with mixed terms as well, in the LHEReweightingWeight order
+mix = ['SM', 'cW_m1', 'cW', 'cHDD_m1', 'cHDD', 'cHW_m1', 'cHW', 'cHWB_m1', 'cHWB', 'cHbox_m1', 'cHbox', 'cHj1_m1', 'cHj1', 'cHj3_m1', 'cHj3', 'cHl1_m1', 'cHl1', 'cHl3_m1', 'cHl3', 'cll1_m1', 'cll1', 'cjj11_m1', 'cjj11', 'cjj31_m1', 'cjj31', 'cjj18_m1', 'cjj18', 'cjj38_m1', 'cjj38', 'cW_cHDD', 'cW_cHW', 'cW_cHWB', 'cW_cHbox', 'cW_cHj1', 'cW_cHj3', 'cW_cHl1', 'cW_cHl3', 'cW_cll1', 'cW_cjj11', 'cW_cjj31', 'cW_cjj18', 'cW_cjj38', 'cHDD_cHW', 'cHDD_cHWB', 'cHDD_cHbox', 'cHDD_cHj1', 'cHDD_cHj3', 'cHDD_cHl1', 'cHDD_cHl3', 'cHDD_cll1', 'cHDD_cjj11', 'cHDD_cjj31', 'cHDD_cjj18', 'cHDD_cjj38', 'cHW_cHWB', 'cHW_cHbox', 'cHW_cHj1', 'cHW_cHj3', 'cHW_cHl1', 'cHW_cHl3', 'cHW_cll1', 'cHW_cjj11', 'cHW_cjj31', 'cHW_cjj18', 'cHW_cjj38', 'cHWB_cHbox', 'cHWB_cHj1', 'cHWB_cHj3', 'cHWB_cHl1', 'cHWB_cHl3', 'cHWB_cll1', 'cHWB_cjj11', 'cHWB_cjj31', 'cHWB_cjj18', 'cHWB_cjj38', 'cHbox_cHj1', 'cHbox_cHj3', 'cHbox_cHl1', 'cHbox_cHl3', 'cHbox_cll1', 'cHbox_cjj11', 'cHbox_cjj31', 'cHbox_cjj18', 'cHbox_cjj38', 'cHj1_cHj3', 'cHj1_cHl1', 'cHj1_cHl3', 'cHj1_cll1', 'cHj1_cjj11', 'cHj1_cjj31', 'cHj1_cjj18', 'cHj1_cjj38', 'cHj3_cHl1', 'cHj3_cHl3', 'cHj3_cll1', 'cHj3_cjj11', 'cHj3_cjj31', 'cHj3_cjj18', 'cHj3_cjj38', 'cHl1_cHl3', 'cHl1_cll1', 'cHl1_cjj11', 'cHl1_cjj31', 'cHl1_cjj18', 'cHl1_cjj38', 'cHl3_cll1', 'cHl3_cjj11', 'cHl3_cjj31', 'cHl3_cjj18', 'cHl3_cjj38', 'cll1_cjj11', 'cll1_cjj31', 'cll1_cjj18', 'cll1_cjj38', 'cjj11_cjj31', 'cjj11_cjj18', 'cjj11_cjj38', 'cjj31_cjj18', 'cjj31_cjj38', 'cjj18_cjj38']
+
+samples['sm'] = {
+    'name': files,
+    'weight': mcCommonWeight+'*rw_SM',
+    'FilesPerJob': 20
+}
+
+for o in op:
+    ip = ls.index(o)
+    im = ls.index(o+'_m1')
+    samples['lin_'+o] = {
+        'name': files,
+        'weight': mcCommonWeight+'*rw_LIN_'+o,
+        'FilesPerJob': 4
+    }
+    samples['quad_'+o] = {
+        'name': files,
+        'weight': mcCommonWeight+'*rw_QUAD_'+o,
+        'FilesPerJob': 20
+    }
+    # samples['SSWW_EFT_linquad_'+o] = {
+    #     'name': files,
+    #     'weight': mcCommonWeight+'*(LHEReweightingWeight['+str(ip)+'] - rw_SM)',
+    #     #'weight': mcCommonWeight+'*(rw_LIN_'+o+' + rw_QUAD_'+o+')',
+    #     'FilesPerJob': 20
+    # }
+#    samples['sm_lin_quad_'+o] = {
+#        'name': files,
+#        'weight': mcCommonWeight+'*LHEReweightingWeight['+str(ip)+']',
+#        #'weight': mcCommonWeight+'*(rw_SM + rw_LIN_'+o+' + rw_QUAD_'+o+')',
+#        'FilesPerJob': 20
+#    }
+#
+#
+#for i in range(len(op)):
+#    for j in range(len(op)):
+#        if j > i:
+#            term = op[i]+'_'+op[j]
+#            samples['sm_lin_quad_mixed_'+term] = {
+#                'name': files,
+#                'weight': mcCommonWeight+'*rw_MIX_'+term,
+#                'FilesPerJob': 20
+#            }
+            # samples['SSWW_EFT_smmix_'+term] = {
+            #     'name': files,
+            #     'weight': mcCommonWeight+'*(rw_SM + rw_LIN_'+op[i]+'*rw_LIN_'+op[i]+' + rw_QUAD_'+op[i]+'*rw_QUAD_'+op[i]+' + rw_LIN_'+op[j]+'*rw_LIN_'+op[j]+' + rw_QUAD_'+op[j]+'*rw_QUAD_'+op[j]+' + rw_MIX_'+term+')',
+            #     'FilesPerJob': 4
+            # }
+
+#samples = {k:v for k,v in samples.items() if 'sm' not in k and 'lin' not in k and 'quad' not in k} # SM ONLY
+#samples = {k:v for k,v in samples.items() if 'sm' in k or 'lin' in k or 'quad' in k} # EFT ONLY
+samples = {k:v for k,v in samples.items() if 'sm' in k}
+#samples = {k:v for k,v in samples.items() if k in ['Higgs','tZq', 'Fake_lep', 'WZ_QCD']}#,'sm','lin_cW','quad_cW']}

@@ -1,4 +1,5 @@
 # nuisances
+# S.D. = Susan Dittmer's cfg https://github.com/latinos/PlotsConfigurations/blob/40d4ef1db7d96aea22acfc863d64b83966c12d32/Configurations/WW/FullRunII/Full2018_v9/inclusive/nuisances.py
 
 nuisances = {}
 
@@ -30,6 +31,7 @@ nuisances['lumi']  = {
     'type'  : 'lnN',
 }
 
+
 # ------------------- trigger
 trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
 
@@ -49,6 +51,46 @@ nuisances['fake_syst']  = {
                    },
 }
 
+nuisances['fake_ele'] = {
+    'name': 'CMS_fake_e_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'AsLnN': '0',
+    'samples': {
+        'Fake_lep': ['fakeWEleUp', 'fakeWEleDown'],
+    }
+}
+
+nuisances['fake_ele_stat'] = {
+    'name': 'CMS_fake_stat_e_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'AsLnN': '0',
+    'samples': {
+        'Fake_lep': ['fakeWStatEleUp', 'fakeWStatEleDown']
+    }
+}
+
+nuisances['fake_mu'] = {
+    'name': 'CMS_fake_m_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'AsLnN': '0',
+    'samples': {
+        'Fake_lep': ['fakeWMuUp', 'fakeWMuDown'],
+    }
+}
+
+nuisances['fake_mu_stat'] = {
+    'name': 'CMS_fake_stat_m_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'AsLnN': '0',
+    'samples': {
+        'Fake_lep': ['fakeWStatMuUp', 'fakeWStatMuDown'],
+    }
+}
+
 # ------------------- electron efficiency and energy scale
 nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2018',
@@ -62,7 +104,7 @@ nuisances['electronpt'] = {
     'type': 'shape',
     'mapUp': 'ElepTup',
     'mapDown': 'ElepTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['SSWW','WpWp_QCD','WZ_EWK']), # did not process the up/do variations
+    'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('ElepTup_suffix'),
     'folderDown': makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
@@ -82,76 +124,55 @@ nuisances['muonpt'] = {
     'type': 'shape',
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['SSWW','WpWp_QCD','WZ_EWK']), # did not process the up/do variations
+    'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('MupTup_suffix'),
     'folderDown': makeMCDirectory('MupTdo_suffix'),
     'AsLnN': '1'
 }
 
 # ------------------- JER
-#nuisances['JER'] = {
-#                'name': 'CMS_res_j_2018',
-#                'kind': 'suffix',
-#                'type': 'shape',
-#                'mapUp': 'JERup',
-#                'mapDown': 'JERdo',
-#                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['SSWW','WpWp_QCD','WZ_EWK']), # did not process the up/do variations
-#                'folderUp' : makeMCDirectory('JERup_suffix'),
-#                'folderDown' : makeMCDirectory('JERdo_suffix'),
-#                'AsLnN'      : '1',
-#}
+nuisances['JER'] = {
+                'name': 'CMS_res_j_2018',
+                'kind': 'suffix',
+                'type': 'shape',
+                'mapUp': 'JERup',
+                'mapDown': 'JERdo',
+                'samples': dict((skey, ['1','1']) for skey in mc),
+                'folderUp' : makeMCDirectory('JERup_suffix'),
+                'folderDown' : makeMCDirectory('JERdo_suffix'),
+                'AsLnN'      : '1',
+}
 
 # ------------------- JES
-# ----- new way to deal with JES, is it correct?
-#nuisances['JES'] = {
-#                'name': 'CMS_jes_RDF_2018',
-#                'kind': 'suffix',
-#                'type': 'shape',
-#                'mapUp': 'JESup',
-#                'mapDown': 'JESdo',
-#                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['SSWW','WpWp_QCD','WZ_EWK']), # did not process the up/do variations
-#                'folderUp' : makeMCDirectory('RDF__JESup_suffix'),
-#                'folderDown' : makeMCDirectory('RDF__JESdo_suffix'),
-#                'AsLnN'      : '1',
-#}
+# ----- from Susan's cfg
+jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 
-# ----- old way to deal with JES, no longer working (no folders)
-#jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
-#folderup = ""
-#folderdo = ""
-#
-#for js in jes_systs:
-#  if 'Absolute' in js:
-#    folderup = makeMCDirectory('JESAbsoluteup_suffix')
-#    folderdo = makeMCDirectory('JESAbsolutedo_suffix')
-#  elif 'BBEC1' in js:
-#    folderup = makeMCDirectory('JESBBEC1up_suffix')
-#    folderdo = makeMCDirectory('JESBBEC1do_suffix')
-#  elif 'EC2' in js:
-#    folderup = makeMCDirectory('JESEC2up_suffix')
-#    folderdo = makeMCDirectory('JESEC2do_suffix')
-#  elif 'HF' in js:
-#    folderup = makeMCDirectory('JESHFup_suffix')
-#    folderdo = makeMCDirectory('JESHFdo_suffix')
-#  elif 'Relative' in js:
-##    folderup = makeMCDirectory('JESRelativeup_suffix')
-##    folderdo = makeMCDirectory('JESRelativedo_suffix')
-##  elif 'FlavorQCD' in js:
-##    folderup = makeMCDirectory('JESFlavorQCDup_suffix')
-##    folderdo = makeMCDirectory('JESFlavorQCDdo_suffix')
-##
-##  nuisances[js] = {
-##      'name': 'CMS_scale_'+js,
-##      'kind': 'suffix',
-##      'type': 'shape',
-##      'mapUp': js+'up',
-##      'mapDown': js+'do',
-##      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['SSWW','WpWp_QCD','WZ_EWK']),
-##      'folderUp': folderup,
-##      'folderDown': folderdo,
-##      'AsLnN': '1'
-##  }
-#
+for js in jes_systs:
+    nuisances[js] = {
+        'name': 'CMS_scale_'+js,
+        'kind': 'suffix',
+        'type': 'shape',
+        'mapUp': js+'up',
+        'mapDown': js+'do',
+        'samples': dict((skey, ['1', '1']) for skey in mcSM), # FIXME should be mc
+        'folderUp': makeMCDirectory('RDF__JESup_suffix'),
+        'folderDown': makeMCDirectory('RDF__JESdo_suffix'),
+        'reweight' : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
+        'AsLnN': '0'
+    }
+
+nuisances['JES'] = {
+                'name': 'CMS_jes_RDF_2018',
+                'kind': 'suffix',
+                'type': 'shape',
+                'mapUp': 'JESup',
+                'mapDown': 'JESdo',
+                'samples': dict((skey, ['1.','1.']) for skey in mcSM), # FIXME should be mc
+                'folderUp' : makeMCDirectory('RDF__JESup_suffix'),
+                'folderDown' : makeMCDirectory('RDF__JESdo_suffix'),
+                'AsLnN'      : '1',
+}
+
 # ------------------- btagging
 for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
@@ -167,13 +188,81 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'samples': dict((skey, btag_syst) for skey in mc),
     }
 
-## ------------------- pile up
-## ------------------- pileup sf
-## ------------------- parton shower (ISR,FSR)
-## ------------------- SSWW pert ord
+# ------------------- pile up
+nuisances['PU']  = {
+                'name'  : 'CMS_PU_2018',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    s : ['(puWeightUp/puWeight)',
+                         '(puWeightDown/puWeight)'] for s in mc}, 
+                'AsLnN'      : '1',
+}
+
+# ------------------- pileup sf
+puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
+
+nuisances['jetPUID'] = {
+    'name': 'CMS_PUID_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, puid_syst) for skey in mc)
+}
+
+# ------------------- parton shower (ISR,FSR)
+nuisances['PS_ISR']  = {
+    'name': 'PS_ISR',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc),
+}
+
+nuisances['PS_FSR']  = {
+    'name': 'PS_FSR',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc),
+}
+
+# ------------------- Underlying Event (from S.D.)
+nuisances['UE']  = {
+                'name'  : 'UE_CP5',
+                'skipCMS' : 1,
+                'type': 'lnN',
+                'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','WW']), 
+}
+
+# ------------------- SSWW pert ord
+#nuisances['ssww_pert_ord'] = {
+#    'name': 'ssww_pert_ord',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.1') for skey in mc if skey in ['SSWW']) 
+#}
+#
 ## ------------------- pdf weight
+#nuisances['pdf_weight'] = { 
+#    'name'  : 'pdf_weight_1718',
+#    'kind'  : 'weight_envelope',
+#    'type'  : 'shape',
+#    'samples' :  { s: [' Alt(LHEPdfWeight,'+str(i)+', 1.)' for i in range(0,103)] for s in mc if s not in ['DPS']}, # if s not in ['DPS']}, # hoping DPS is now fixed
+#    'AsLnN':  '1'
+#}
+##nuisances['pdf_weight_accept'] = {
+##     'name'  : 'pdf_weight_1718_accept',
+##     'kind'  : 'weight_envelope',
+##     'type'  : 'shape',
+##     'samples': { k : [ 'Alt(PDFweight_normalized,'+str(i)+', 1.)' for i in range(0,103) ] for k in ['SSWW', 'WZ_EWK']}
+## }
+#
 ## ------------------- QCD scale
-## ------------------- MET (new, I completely did not have it before)
+#nuisances['QCD_scale_accept'] = {
+#            'name'  : 'QCDscale_QCD_WW_accept',
+#            'kind'  : 'weight',
+#            'type'  : 'shape',
+#            'samples': { k:["LHEScaleWeight[0]", "LHEScaleWeight[8]"] for k in mc }
+#        }
+#
+# ------------------- MET (new, I completely did not have it before)
 nuisances['met'] = {
     'name': 'CMS_scale_met_2018',
     'kind': 'suffix',
@@ -187,7 +276,7 @@ nuisances['met'] = {
 }
 
 # ------------------- rateparams
-#
+
 # ------------------- stats
 autoStats = True
 if autoStats:
@@ -289,3 +378,5 @@ if autoStats:
 #                                 # kind-> weight: Use the specified weight to reweight events;
 #                                        # tree: uses the provided alternative trees;
 # # The MC statistics is a particular uncertainty: is caused by our finite statistics used to elaborate the template fits. Two approach: unfied and bin-by-bin (bbb)
+
+
