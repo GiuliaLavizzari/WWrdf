@@ -161,18 +161,6 @@ for js in jes_systs:
         'AsLnN': '0'
     }
 
-nuisances['JES'] = {
-                'name': 'CMS_jes_RDF_2018',
-                'kind': 'suffix',
-                'type': 'shape',
-                'mapUp': 'JESup',
-                'mapDown': 'JESdo',
-                'samples': dict((skey, ['1.','1.']) for skey in mcSM), # FIXME should be mc
-                'folderUp' : makeMCDirectory('RDF__JESup_suffix'),
-                'folderDown' : makeMCDirectory('RDF__JESdo_suffix'),
-                'AsLnN'      : '1',
-}
-
 # ------------------- btagging
 for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
