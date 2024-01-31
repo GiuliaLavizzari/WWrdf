@@ -56,7 +56,27 @@ structure['DY']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
-structure['Higgs']  = {
+#structure['Higgs']  = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+structure['ggH_hww']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+structure['ggH_htt']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+structure['qqH_hww']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+structure['qqH_hww']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+structure['ttH_hww']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }

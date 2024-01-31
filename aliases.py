@@ -17,8 +17,8 @@ mcBSM     = [skey for skey in samples if 'lin' in skey or 'quad' in skey or 'sm'
 mcEFT     = [skey for skey in samples if 'lin' in skey or 'quad' in skey] 
 mcSM      = [skey for skey in samples if skey not in ('DATA', 'Fake_lep') and skey not in mcBSM]
 mc        = [skey for skey in samples if skey not in ('DATA', 'Fake_lep') and skey not in mcEFT]
-SSsamples = [skey for skey in samples if skey not in ('WW','DY','Higgs')] # 'Top' shoud be here
-OSsamples = [skey for skey in mc if skey in ('WW','DY','Higgs')]
+OSsamples = [skey for skey in mc if skey in ('WW','DY','Higgs','qqH_htt','qqH_hww','ggH_hww','ggH_htt','ttH_hww')]
+SSsamples = [skey for skey in samples if skey not in OSsamples] # 'Top' shoud be here
 
 print ("\nmcBSM", mcBSM)
 print ("\nmcEFT", mcEFT)

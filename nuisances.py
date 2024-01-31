@@ -220,6 +220,72 @@ nuisances['UE']  = {
                 'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','WW']), 
 }
 
+# ------------------- XS
+
+# ------------------- PDF
+valuesggh = "1.032" #HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm')
+nuisances['pdf_Higgs_gg'] = {
+    'name': 'pdf_Higgs_gg',
+    'samples': {
+        'ggH_hww': valuesggh,
+        'ggH_htt': valuesggh,
+    },
+    'type': 'lnN',
+}
+
+values = "1.036" #HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
+nuisances['pdf_Higgs_ttH'] = {
+    'name': 'pdf_Higgs_ttH',
+    'samples': {
+        'ttH_hww': values
+    },
+    'type': 'lnN',
+}
+
+valuesqqh = "1.021" #HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
+nuisances['pdf_Higgs_qqbar'] = {
+    'name': 'pdf_Higgs_qqbar',
+    'type': 'lnN',
+    'samples': {
+        'qqH_hww': valuesqqh,
+        'qqH_htt': valuesqqh,
+    },
+}
+
+# pdf_qqbar
+# pdf_qqbar accept
+
+nuisances['pdf_Higgs_gg_ACCEPT'] = {
+    'name': 'pdf_Higgs_gg_ACCEPT',
+    'samples': {
+        'ggH_hww': '1.006',
+        'ggH_htt': '1.006',
+    },
+    'type': 'lnN',
+}
+
+#nuisances['pdf_gg_ACCEPT'] = {
+#    'name': 'pdf_gg_ACCEPT',
+#    'samples': {
+#        'ggWW': '1.006',
+#    },
+#    'type': 'lnN',
+#}
+
+nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
+    'name': 'pdf_Higgs_qqbar_ACCEPT',
+    'type': 'lnN',
+    'samples': {
+        'qqH_hww': '1.002',
+        'qqH_htt': '1.002',
+    },
+}
+
+
+# ------------------- QCD scale
+
+
+
 # ------------------- SSWW pert ord
 #nuisances['ssww_pert_ord'] = {
 #    'name': 'ssww_pert_ord',
