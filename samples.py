@@ -211,6 +211,8 @@ samples['WW'] = {
     'FilesPerJob': 17,
 }
 
+# flavia had also: 'ST_s-channel_ext1' 'ST_t-channel_antitop' 'ST_t-channel_top'
+# susan had also: 
 files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
         nanoGetSampleFiles(mcDirectory, 'ST_tW_top') + \
         nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop')
@@ -219,6 +221,7 @@ samples['Top'] = {
     'weight': mcCommonWeightOS,
     'FilesPerJob': 3,
 }
+#addSampleWeight(samples,'Top','TTTo2L2Nu','Top_pTrw')
 
 ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
@@ -415,7 +418,8 @@ for i in range(len(op)):
                 'FilesPerJob': 20
             }
 
-#samples = {k:v for k,v in samples.items() if 'sm' not in k and 'lin' not in k and 'quad' not in k} # SM ONLY
+#samples =  {k:v for k,v in samples.items() if 'Top' in k}
+samples = {k:v for k,v in samples.items() if 'sm' not in k and 'lin' not in k and 'quad' not in k} # SM ONLY
 #samples = {k:v for k,v in samples.items() if 'sm' in k or 'lin' in k or 'quad' in k} # EFT ONLY
 #samples = {k:v for k,v in samples.items() if k in ['ggH_hww']}
 #samples = {k:v for k,v in samples.items() if k in ['Higgs','tZq', 'Fake_lep', 'WZ_QCD']}#,'sm','lin_cW','quad_cW']}

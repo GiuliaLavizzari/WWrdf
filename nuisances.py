@@ -221,7 +221,20 @@ nuisances['UE']  = {
 }
 
 # ------------------- XS
+apply_on = {
+    'Top': [
+        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
+        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
+    ]
+}
 
+nuisances['singleTopToTTbar'] = {
+    'name': 'singleTopToTTbar',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': apply_on
+}
 # ------------------- PDF
 valuesggh = "1.032" #HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm')
 nuisances['pdf_Higgs_gg'] = {

@@ -32,18 +32,14 @@ structure['tZq']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
-structure['Vg']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
 structure['VgS1_H']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 structure['VgS1_L']  = {
-                  'isSignal' : 0,
+                   'isSignal' : 0,
                   'isData'   : 0
-                  }
+                   }
 structure['WW']  = {
                   'isSignal' : 0,
                   'isData'   : 0
@@ -60,7 +56,15 @@ structure['DY']  = {
 #                  'isSignal' : 0,
 #                  'isData'   : 0
 #                  }
+structure['qqH_hww']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
 structure['ggH_hww']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+structure['qqH_htt']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
@@ -68,22 +72,14 @@ structure['ggH_htt']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
-structure['qqH_hww']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-structure['qqH_hww']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
 structure['ttH_hww']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
-structure['DPS']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
+#structure['DPS']  = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
 structure['VVV']  = {
                   'isSignal' : 0,
                   'isData'   : 0

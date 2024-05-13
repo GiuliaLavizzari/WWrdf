@@ -91,7 +91,7 @@ groupPlot['VVV']  = {
     'isSignal':0, 
     #'color':palette["Green3"], 
     'color': palette2["LightGreen"],
-    'samples':['VVV'],
+    'samples':['VVV','VgS1'],
     'fill': 1001
 }
 
@@ -136,7 +136,7 @@ groupPlot['Wrong-sign']  = {
     'isSignal':0, 
     #'color':palette["Orange"], 
     'color': palette2["fullAzure"],
-    'samples':['WW','DY','Higgs'],
+    'samples':['WW','DY','Top', 'qqH_hww', 'ggH_hww', 'qqH_htt', 'ggH_htt', 'ttH_hww'], # 'Higgs'
     'fill': 1001
 }
 
@@ -167,8 +167,7 @@ plot['WpWp_QCD']  = {
 }
 
 #plot['Vg']  = dict(color=1, isSignal=0, isData=0, scale=1.0)
-plot['VgS1_H']  = dict(color=1, isSignal=0, isData=0, scale=1.0) # VgS VgS1 VgS2
-plot['VgS1_L']  = dict(color=1, isSignal=0, isData=0, scale=1.0) # VgS VgS1 VgS2
+plot['VgS1']  = dict(color=1, isSignal=0, isData=0, scale=1.0) # VgS VgS1 VgS2
 
 plot['ZZ']  = {
     'color':Violet + 10, 
@@ -234,11 +233,12 @@ plot['WW']  = {
     'scale':1.0
 }
 
-#plot['Top']  = {
-#    'color':Green + 10, 
-#    'isSignal':0, 
-#    'isData':0, 
-#    'scale':1.0
+plot['Top']  = {
+    'color':Green + 10, 
+    'isSignal':0, 
+    'isData':0, 
+    'scale':1.0
+}
 
 plot['DY']  = {
     'color':Green + 10, 
@@ -247,12 +247,20 @@ plot['DY']  = {
     'scale':1.0
 }
 
-plot['Higgs']  = {
-    'color':Green + 10, 
-    'isSignal':0, 
-    'isData':0, 
-    'scale':1.0
-}
+#plot['Higgs']  = {
+#    'color':Green + 10, 
+#    'isSignal':0, 
+#    'isData':0, 
+#    'scale':1.0
+#}
+
+plot['qqH_hww'] = {'color':Green + 10, 'isSignal':0, 'isData':0, 'scale':1.0}
+plot['ggH_hww'] = {'color':Green + 10, 'isSignal':0, 'isData':0, 'scale':1.0}
+plot['qqH_htt'] = {'color':Green + 10, 'isSignal':0, 'isData':0, 'scale':1.0}
+plot['ggH_htt'] = {'color':Green + 10, 'isSignal':0, 'isData':0, 'scale':1.0}
+plot['ttH_hww'] = {'color':Green + 10, 'isSignal':0, 'isData':0, 'scale':1.0}
+
+
 ##Data
 
 plot['DATA']  = {

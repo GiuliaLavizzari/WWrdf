@@ -17,7 +17,7 @@ mcBSM     = [skey for skey in samples if 'lin' in skey or 'quad' in skey or 'sm'
 mcEFT     = [skey for skey in samples if 'lin' in skey or 'quad' in skey] 
 mcSM      = [skey for skey in samples if skey not in ('DATA', 'Fake_lep') and skey not in mcBSM]
 mc        = [skey for skey in samples if skey not in ('DATA', 'Fake_lep') and skey not in mcEFT]
-OSsamples = [skey for skey in mc if skey in ('WW','DY','Higgs','qqH_htt','qqH_hww','ggH_hww','ggH_htt','ttH_hww')]
+OSsamples = [skey for skey in mc if skey in ('WW','DY','Higgs','qqH_htt','qqH_hww','ggH_hww','ggH_htt','ttH_hww','Top')]
 SSsamples = [skey for skey in samples if skey not in OSsamples] # 'Top' shoud be here
 
 print ("\nmcBSM", mcBSM)
@@ -37,7 +37,7 @@ aliases['tauVeto_wz'] = {
 
 # -------- lepton misidentification SF
 aliases['__chargeflip_w'] = {
-    'linesToAdd': ['#include "/afs/cern.ch/user/g/glavizza/private/mkShapesRDF/examples/WWSR/mischarge_sf.cc"\n'],
+    'linesToAdd': ['#include "/afs/cern.ch/user/g/glavizza/private/mkShapesRDF/examples/2018/mischarge_sf.cc"\n'],
     'samples': OSsamples
 }
 aliases['chargeflip_w'] = {
@@ -75,6 +75,11 @@ aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
 }
 
+# -------- top pt
+aliases['Top_pTrw'] = {
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'samples': ['Top']
+}
 # -------- fake lepton weights and variations
 aliases['fakeW'] = {
     'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_2l2j',

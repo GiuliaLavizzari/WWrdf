@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 date='_2018_31082022'
-tag = 'VBS_WZ'+date
+tag = 'VBS_WW'+date
 runnerFile = 'default'
 
 # used by mkShape to define output directory for root files
