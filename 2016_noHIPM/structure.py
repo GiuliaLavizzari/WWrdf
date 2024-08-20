@@ -24,11 +24,7 @@ structure['ZZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
-structure['TTV']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-structure['tZq']  = {
+structure['tVx']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }

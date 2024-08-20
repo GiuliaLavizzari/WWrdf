@@ -14,13 +14,13 @@ nuisances = {}
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.010') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.010') for skey in mc if skey not in ['tVx'])
 }
 
 nuisances['lumi_Correlated'] = {
     'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
-    'samples': dict((skey, '1.006') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.006') for skey in mc if skey not in ['tVx'])
 }
 
 # ------------------- trigger
@@ -350,6 +350,13 @@ nuisances['met'] = {
 }
 
 # ------------------- rateparams
+nuisances['norm_WZb']  = {
+               'name'  : 'norm_WZb',
+               'samples'  : {
+                   'tVx' : '1.00',
+                   },
+               'type'  : 'rateParam',
+              }
 
 # ------------------- stats
 autoStats = True

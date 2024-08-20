@@ -100,7 +100,7 @@ groupPlot['tVx']  = {
     'isSignal':0, 
     #'color':palette["Yellow"], 
     'color': palette2["Violet"],
-    'samples':['TTV','tZq'],
+    'samples':['tVx'],
     'fill': 1001
 }
 
@@ -219,14 +219,7 @@ plot['VVV']  = {
     'scale':1.0
 }
 
-plot['TTV']  = {
-    'color':Green + 10, 
-    'isSignal':0, 
-    'isData':0, 
-    'scale':1.0
-}
-
-plot['tZq']  = {
+plot['tVx']  = {
     'color':Green + 10, 
     'isSignal':0, 
     'isData':0, 
@@ -285,5 +278,3 @@ legend['lumi'] = 'L = 19.5/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 #legend['lumi'] = 'L = 137.19/fb'
 
-plot =  {k:v for k,v in plot.items() if k in ['SSWW', 'WpWp_QCD', 'WZ_EWK', 'WZ_QCD', 'Fake_lep', 'DATA']}
-groupPlot = {k:v for k,v in groupPlot.items() if k in ['SSWW', 'WpWp_QCD', 'WZ_EWK', 'WZ_QCD', 'non-prompt', 'DATA']}

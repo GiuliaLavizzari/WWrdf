@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
-date='_2017'
-tag = 'VBS_WZ'+date
+date='_2016_noHIPM'
+tag = 'VBS_WW'+date
 runnerFile = 'default'
 
 # used by mkShape to define output directory for root files
@@ -13,16 +13,16 @@ batchFolder   = 'condor'
 configsFolder = 'configs'
 
 # file with TTree aliases
-aliasesFile = 'aliasesWZ.py'
+aliasesFile = 'aliasesWW.py'
 
 # file with list of variables
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cutsWZ.py'
+cutsFile = 'cutsWW.py'
 
 # file with list of samples
-samplesFile = 'samplesWZ.py'
+samplesFile = 'samplesWW.py'
 
 # file with list of samples
 plotFile = 'plot.py'

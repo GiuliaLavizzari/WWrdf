@@ -1,6 +1,6 @@
 # example of configuration file
 treeName= 'Events'
-date='_2017'
+date='_2016_HIPM'
 tag = 'VBS_WZ'+date
 runnerFile = 'default'
 

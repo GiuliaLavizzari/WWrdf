@@ -12,23 +12,22 @@ nuisances = {}
 # ------------------- lumi
 
 nuisances['lumi_Uncorrelated'] = {
-    'name': 'lumi_13TeV_2018',
+    'name': 'lumi_13TeV_2017',
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.020') for skey in mc if skey not in ['tVx'])
 }
 
 nuisances['lumi_Correlated'] = {
     'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
-    'samples': dict((skey, '1.020') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.009') for skey in mc if skey not in ['tVx'])
 }
 
 nuisances['lumi_1718'] = {
     'name': 'lumi_13TeV_1718',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.006') for skey in mc if skey not in ['tVx'])
 }
-
 # ------------------- trigger
 trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
 
@@ -137,7 +136,7 @@ nuisances['muonpt'] = {
     'type': 'shape',
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ["WW"]),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ["WW", "ZZ"]),
     'folderUp': makeMCDirectory('MupTup_suffix'),
     'folderDown': makeMCDirectory('MupTdo_suffix'),
     'AsLnN': '1'
@@ -150,7 +149,7 @@ nuisances['JER'] = {
                 'type': 'shape',
                 'mapUp': 'JERup',
                 'mapDown': 'JERdo',
-                'samples': dict((skey, ['1','1']) for skey in mc if skey not in ["tZq", "qq"]),
+                'samples': dict((skey, ['1','1']) for skey in mc if skey not in ["tVx", "WW", "ZZ"]),
                 'folderUp' : makeMCDirectory('JERup_suffix'),
                 'folderDown' : makeMCDirectory('JERdo_suffix'),
                 'AsLnN'      : '1',
@@ -356,6 +355,13 @@ nuisances['met'] = {
 }
 
 # ------------------- rateparams
+nuisances['norm_WZb']  = {
+               'name'  : 'norm_WZb',
+               'samples'  : {
+                   'tVx' : '1.00',
+                   },
+               'type'  : 'rateParam',
+              }
 
 # ------------------- stats
 autoStats = True

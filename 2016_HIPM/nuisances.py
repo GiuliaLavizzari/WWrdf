@@ -14,13 +14,13 @@ nuisances = {}
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.010') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.010') for skey in mc if skey not in ['tVx'])
 }
 
 nuisances['lumi_Correlated'] = {
     'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
-    'samples': dict((skey, '1.006') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.006') for skey in mc if skey not in ['tVx'])
 }
 # ------------------- trigger
 trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
@@ -102,7 +102,7 @@ nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc if skey not in ['ggH_htt'])
 }
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2016',
@@ -110,7 +110,7 @@ nuisances['electronpt'] = {
     'type': 'shape',
     'mapUp': 'ElepTup',
     'mapDown': 'ElepTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['ggH_htt']),
     'folderUp': makeMCDirectory('ElepTup_suffix'),
     'folderDown': makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
@@ -122,7 +122,7 @@ nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc if skey not in ['ggH_htt'])
 }
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2016',
@@ -130,7 +130,7 @@ nuisances['muonpt'] = {
     'type': 'shape',
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['ggH_htt']),
     'folderUp': makeMCDirectory('MupTup_suffix'),
     'folderDown': makeMCDirectory('MupTdo_suffix'),
     'AsLnN': '1'
@@ -143,7 +143,7 @@ nuisances['JER'] = {
                 'type': 'shape',
                 'mapUp': 'JERup',
                 'mapDown': 'JERdo',
-                'samples': dict((skey, ['1','1']) for skey in mc),
+                'samples': dict((skey, ['1','1']) for skey in mc if skey not in ['ggH_htt']),
                 'folderUp' : makeMCDirectory('JERup_suffix'),
                 'folderDown' : makeMCDirectory('JERdo_suffix'),
                 'AsLnN'      : '1',
@@ -179,7 +179,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'name': name,
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, btag_syst) for skey in mc),
+        'samples': dict((skey, btag_syst) for skey in mc if skey not in ['ggH_htt']),
     }
 
 # ------------------- pile up
@@ -189,7 +189,7 @@ nuisances['PU']  = {
                 'type'  : 'shape',
                 'samples'  : {
                     s : ['(puWeightUp/puWeight)',
-                         '(puWeightDown/puWeight)'] for s in mc}, 
+                         '(puWeightDown/puWeight)'] for s in mc if s not in ['ggH_htt']}, 
                 'AsLnN'      : '1',
 }
 
@@ -200,7 +200,7 @@ nuisances['jetPUID'] = {
     'name': 'CMS_PUID_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, puid_syst) for skey in mc)
+    'samples': dict((skey, puid_syst) for skey in mc if skey not in ['ggH_htt'])
 }
 
 # ------------------- parton shower (ISR,FSR)
@@ -208,14 +208,14 @@ nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc),
+    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc if skey not in ['ggH_htt']),
 }
 
 nuisances['PS_FSR']  = {
     'name': 'PS_FSR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc),
+    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc if skey not in ['ggH_htt']),
 }
 
 # ------------------- Underlying Event (from S.D.)
@@ -349,6 +349,13 @@ nuisances['met'] = {
 }
 
 # ------------------- rateparams
+nuisances['norm_WZb']  = {
+               'name'  : 'norm_WZb',
+               'samples'  : {
+                   'tVx' : '1.00',
+                   },
+               'type'  : 'rateParam',
+              }
 
 # ------------------- stats
 autoStats = True
