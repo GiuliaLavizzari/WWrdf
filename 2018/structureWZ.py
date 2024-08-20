@@ -44,10 +44,10 @@ structure['Top']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
-structure['DY']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
+#structure['DY']  = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
 #structure['Higgs']  = {
 #                  'isSignal' : 0,
 #                  'isData'   : 0

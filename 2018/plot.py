@@ -100,7 +100,7 @@ groupPlot['tVx']  = {
     'isSignal':0, 
     #'color':palette["Yellow"], 
     'color': palette2["Violet"],
-    'samples':['TTV','tZq'],
+    'samples':['tVx'],
     'fill': 1001
 }
 
@@ -218,14 +218,7 @@ plot['VVV']  = {
     'scale':1.0
 }
 
-plot['TTV']  = {
-    'color':Green + 10, 
-    'isSignal':0, 
-    'isData':0, 
-    'scale':1.0
-}
-
-plot['tZq']  = {
+plot['tVx']  = {
     'color':Green + 10, 
     'isSignal':0, 
     'isData':0, 

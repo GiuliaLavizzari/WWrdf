@@ -11,26 +11,23 @@ nuisances = {}
 #### Luminosity
 # ------------------- lumi
 
-nuisances['lumi']  = {
-    'name'  : 'lumi_13TeV_2018',
-    'samples'  : {
-        'SSWW'      : '1.025',
-        'WpWp_QCD'  : '1.025',
-        'WZ_EWK'    : '1.025',
-        'WZ_QCD'    : '1.025',
-        'ZZ'        : '1.025',
-        'TTV'       : '1.025',
-        'tZq'       : '1.025',
-        'VgS1_H'    : '1.025',
-        'VgS1_L'    : '1.025',
-#        'WW'        : '1.025',  # data driven
-#        'DY'        : '1.025',  # data driven
-        'Higgs'     : '1.025',
-        'VVV'       : '1.025',
-    },
-    'type'  : 'lnN',
+nuisances['lumi_Uncorrelated'] = {
+    'name': 'lumi_13TeV_2018',
+    'type': 'lnN',
+    'samples': dict((skey, '1.015') for skey in mcSM if skey not in ['tVx'])
 }
 
+nuisances['lumi_Correlated'] = {
+    'name': 'lumi_13TeV_correlated',
+    'type': 'lnN',
+    'samples': dict((skey, '1.020') for skey in mcSM if skey not in ['tVx'])
+}
+
+nuisances['lumi_1718'] = {
+    'name': 'lumi_13TeV_1718',
+    'type': 'lnN',
+    'samples': dict((skey, '1.002') for skey in mcSM if skey not in ['tVx'])
+}
 
 # ------------------- trigger
 trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
@@ -39,7 +36,7 @@ nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc)
+    'samples': dict((skey, trig_syst) for skey in mcSM)
 }
 
 # ------------------- fakes
@@ -112,7 +109,7 @@ nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mcSM)
 }
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2018',
@@ -120,7 +117,7 @@ nuisances['electronpt'] = {
     'type': 'shape',
     'mapUp': 'ElepTup',
     'mapDown': 'ElepTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mcSM),
     'folderUp': makeMCDirectory('ElepTup_suffix'),
     'folderDown': makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
@@ -132,7 +129,7 @@ nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mcSM)
 }
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2018',
@@ -140,7 +137,7 @@ nuisances['muonpt'] = {
     'type': 'shape',
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mcSM),
     'folderUp': makeMCDirectory('MupTup_suffix'),
     'folderDown': makeMCDirectory('MupTdo_suffix'),
     'AsLnN': '1'
@@ -153,7 +150,7 @@ nuisances['JER'] = {
                 'type': 'shape',
                 'mapUp': 'JERup',
                 'mapDown': 'JERdo',
-                'samples': dict((skey, ['1','1']) for skey in mc),
+                'samples': dict((skey, ['1','1']) for skey in mcSM),
                 'folderUp' : makeMCDirectory('JERup_suffix'),
                 'folderDown' : makeMCDirectory('JERdo_suffix'),
                 'AsLnN'      : '1',
@@ -189,7 +186,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'name': name,
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, btag_syst) for skey in mc),
+        'samples': dict((skey, btag_syst) for skey in mcSM),
     }
 
 # ------------------- pile up
@@ -199,7 +196,7 @@ nuisances['PU']  = {
                 'type'  : 'shape',
                 'samples'  : {
                     s : ['(puWeightUp/puWeight)',
-                         '(puWeightDown/puWeight)'] for s in mc}, 
+                         '(puWeightDown/puWeight)'] for s in mcSM}, 
                 'AsLnN'      : '1',
 }
 
@@ -210,7 +207,7 @@ nuisances['jetPUID'] = {
     'name': 'CMS_PUID_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, puid_syst) for skey in mc)
+    'samples': dict((skey, puid_syst) for skey in mcSM)
 }
 
 # ------------------- parton shower (ISR,FSR)
@@ -218,14 +215,14 @@ nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc),
+    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mcSM),
 }
 
 nuisances['PS_FSR']  = {
     'name': 'PS_FSR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc),
+    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mcSM),
 }
 
 # ------------------- Underlying Event (from S.D.)
@@ -233,7 +230,7 @@ nuisances['UE']  = {
                 'name'  : 'UE_CP5',
                 'skipCMS' : 1,
                 'type': 'lnN',
-                'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','WW']), 
+                'samples': dict((skey, '1.015') for skey in mcSM if skey not in ['WW','WW']), 
 }
 
 # ------------------- XS
@@ -352,13 +349,20 @@ nuisances['met'] = {
     'type': 'shape',
     'mapUp': 'METup',
     'mapDown': 'METdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['SSWW','WpWp_QCD','WZ_EWK']),
+    'samples': dict((skey, ['1', '1']) for skey in mcSM if skey not in ['SSWW','WpWp_QCD','WZ_EWK']),
     'folderUp': makeMCDirectory('METup_suffix'),
     'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
 
 # ------------------- rateparams
+nuisances['norm_WZb']  = {
+               'name'  : 'norm_WZb',
+               'samples'  : {
+                   'tVx' : '1.00',
+                   },
+               'type'  : 'rateParam',
+              }
 
 # ------------------- stats
 autoStats = True
@@ -373,93 +377,5 @@ if autoStats:
 # 'includeSignal' =  Include MC stat nuisances on signal processes (1=True, 0=False)
 
 # -------------------------------
-
-########################################################################################
-################################ THEORY UNCERTAINTIES  #################################
-# nuisances['QCDscale']  = {
-#     'name'  : 'QCDscale',
-#     'type'  : 'lnN',
-#     'samples'  : {
-#         'WZ'   : '1.10',
-#         'ZZ'   : '1.10',
-#         'VVV'  : '1.10',
-#         'DPS'   : '1.10',
-#         'Vg'    : '1.10' ,
-#         'WpWp_EWK': '1.10' ,
-#         'WW_strong': '1.10' ,
-#     },
-# }
-
-# nuisances['QCDscale_gg_accept']  = {
-#     'name'  : 'QCDscale_gg_accept',
-#     'type'  : 'lnN',
-#     'samples'  : {
-#          'DY': '0.976/1.012' ,
-#          'WpWp_EWK': '0.994/0.981' ,
-#     },
-#  }
-
-
-# # pdf uncertainty
-
-# nuisances['pdf']  = {
-#     'name'  : 'pdf',
-#     'type'  : 'lnN',
-#     'samples'  : {
-#         'WZ'   : '1.01',
-#         'ZZ'   : '1.01',
-#         'VVV'  : '1.01',
-#         'DPS'   : '1.01',
-#         'Vg'    : '1.01' ,
-#         'WpWp_EWK': '1.01' ,
-#         'WW_strong': '1.01' ,
-#     },
-# }
-
-
-# ################################ BKG ESTIMATION UNCERTAINTIES  #################################
-
-# nuisances['WZ_norm']  = {
-#                'name'  : 'WZ_norm',
-#                'samples'  : {
-#                    'WZ'   : '1.3',
-# 		},
-#                'type'  : 'lnN',
-# }
-
-# #7% of uncertainty due to systematic uncertainties on simulations
-
-# # 30% of global uncertainty
-# nuisances['fake_syst']  = {
-#                'name'  : 'fake_syst',
-#                'type'  : 'lnN',
-#                'samples'  : {
-#                    'Fake_lep' : '1.30',
-#                    },
-# }
-
-
-
-# # statistical fluctuation
-# # on MC/data
-# # "stat" is a special word to identify this nuisance
-# # Use the following if you want to apply the automatic combine MC stat nuisances->Faster than bin-by-bin
-# nuisances['stat']  = {
-#               'type'  : 'auto',
-#               'maxPoiss'  : '10',
-#               'includeSignal'  : '1',
-#               'samples' : {}
-#              }
-
-
-
-
-# # Differnt type of uncentainties: type->ln N: (modify only event yeld) use a lognorm distributions with sigma = uncertainty. For normalization rateParam
-#                                         # can be used--> use a uniform distribution;
-#                                       # Shape: modify not only the events yelds but the event selection too (the shape) will run the varied shapes
-#                                              # according to the following two possible kinds
-#                                 # kind-> weight: Use the specified weight to reweight events;
-#                                        # tree: uses the provided alternative trees;
-# # The MC statistics is a particular uncertainty: is caused by our finite statistics used to elaborate the template fits. Two approach: unfied and bin-by-bin (bbb)
 
 
